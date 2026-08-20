@@ -556,7 +556,14 @@
     h=(h+1)%24; render(); status.textContent='S1 pressed • +1 hour';
   });
   document.getElementById('addMinute').addEventListener('click', () => {
-    m=(m+1)%60; s=0; last=performance.now(); render();
+    m += 1;
+    if (m >= 60) {
+      m = 0;
+      h = (h + 1) % 24;
+    }
+    s = 0;
+    last = performance.now();
+    render();
     status.textContent='S2 pressed • +1 minute • seconds → 00';
   });
   document.getElementById('syncReal').addEventListener('click', () => {
